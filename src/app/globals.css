@@ -3,20 +3,21 @@
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here.
 All colors MUST be HSL.
 
-POKEMON CARD TRADING APP DESIGN SYSTEM
-Based on reference image: ai-generated-preview.png
+POKEMON CARD TRADING APP DESIGN SYSTEM - LIGHT THEME
+Inspired by Pokémon aesthetic with vibrant red accents
 
 COLOR PALETTE:
-- Primary Navy: Deep navy blue (#1a2332) - Main backgrounds, hero sections
-- Pokemon Yellow: Bright accent yellow (#ffd700) - CTAs, highlights
-- Card White: Clean white (#ffffff) - Card backgrounds, content areas
-- Success Green: (#10b981) - Completed trades, positive actions
-- Warning Orange: (#f59e0b) - Pending transactions, alerts
-- Blue Accent: (#3b82f6) - Links, secondary actions
+- Primary Red: Vibrant Pokémon red (#EF4444 / #DC2626) - CTAs, highlights, accents
+- Light Background: Soft cream/white (#FEFCE8 / #FEF9C3) - Main backgrounds
+- Card White: Pure white (#FFFFFF) - Card backgrounds
+- Pokémon Blue: Classic Pokémon blue (#3B82F6) - Secondary accents
+- Pokémon Yellow: Bright yellow (#FACC15) - Tertiary highlights
+- Success Green: (#22C55E) - Completed trades, positive actions
+- Warm Gray: (#78716C) - Text, borders
 
 TYPOGRAPHY:
-- Body: Geist Sans (modern, clean)
-- Card Names: Geist with slight styling emphasis
+- Body: Geist Sans (modern, playful)
+- Headings: Bold with slight letter spacing
 - Sizes: 14px body, 16px-24px headings, 32px+ hero text
 
 SPACING SYSTEM:
@@ -26,84 +27,85 @@ SPACING SYSTEM:
 - Grid gaps: 16px-24px
 
 COMPONENT PATTERNS:
-- Border Radius: 8px cards, 12px modals, 6px buttons
-- Shadows: subtle elevation (0 2px 8px rgba(0,0,0,0.1))
-- Hover: translateY(-4px) with shadow increase
-- Card aspect ratio: Pokemon cards maintain authentic proportions
+- Border Radius: 12px cards, 16px modals, 8px buttons
+- Shadows: playful elevation with subtle colors
+- Hover: translateY(-2px) with shadow increase
+- Card aspect ratio: Pokémon cards maintain authentic proportions
 */
 
 :root {
-  --background: 0 0% 96%;
-  --foreground: 215 28% 17%;
+  /* Light cream background inspired by Pokémon cards */
+  --background: 48 100% 97%;
+  --foreground: 25 20% 20%;
 
   --card: 0 0% 100%;
-  --card-foreground: 215 28% 17%;
+  --card-foreground: 25 20% 20%;
 
   --popover: 0 0% 100%;
-  --popover-foreground: 215 28% 17%;
+  --popover-foreground: 25 20% 20%;
 
-  /* Pokemon Yellow - Primary accent */
-  --primary: 48 100% 50%;
-  --primary-foreground: 215 28% 17%;
+  /* Pokémon Red - Primary accent */
+  --primary: 0 72% 51%;
+  --primary-foreground: 0 0% 100%;
 
-  /* Deep Navy - Secondary backgrounds */
-  --secondary: 215 28% 13%;
-  --secondary-foreground: 0 0% 100%;
+  /* Soft yellow background - Secondary */
+  --secondary: 48 96% 89%;
+  --secondary-foreground: 25 20% 20%;
 
-  --muted: 210 40% 96.1%;
-  --muted-foreground: 215 16% 47%;
+  --muted: 48 95% 93%;
+  --muted-foreground: 25 15% 45%;
 
-  /* Blue Accent */
+  /* Pokémon Blue - Accent */
   --accent: 217 91% 60%;
   --accent-foreground: 0 0% 100%;
 
-  --destructive: 0 84.2% 60.2%;
+  --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
 
   /* Success Green */
-  --success: 160 84% 39%;
+  --success: 142 71% 45%;
   --success-foreground: 0 0% 100%;
 
-  /* Warning Orange */
-  --warning: 38 92% 50%;
-  --warning-foreground: 215 28% 17%;
+  /* Pokémon Yellow - Warning/highlight */
+  --warning: 45 93% 47%;
+  --warning-foreground: 25 20% 20%;
 
-  --border: 215 20% 85%;
-  --input: 215 20% 85%;
-  --ring: 48 100% 50%;
+  --border: 45 40% 85%;
+  --input: 45 40% 90%;
+  --ring: 0 72% 51%;
 
-  --radius: 0.5rem;
+  --radius: 0.75rem;
 
-  --sidebar-background: 0 0% 98%;
-  --sidebar-foreground: 240 5.3% 26.1%;
-  --sidebar-primary: 240 5.9% 10%;
-  --sidebar-primary-foreground: 0 0% 98%;
-  --sidebar-accent: 240 4.8% 95.9%;
-  --sidebar-accent-foreground: 240 5.9% 10%;
-  --sidebar-border: 220 13% 91%;
-  --sidebar-ring: 217.2 91.2% 59.8%;
+  --sidebar-background: 48 100% 97%;
+  --sidebar-foreground: 25 20% 20%;
+  --sidebar-primary: 0 72% 51%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 48 96% 89%;
+  --sidebar-accent-foreground: 25 20% 20%;
+  --sidebar-border: 45 40% 85%;
+  --sidebar-ring: 0 72% 51%;
 }
 
 .dark {
-  /* Deep Navy background for dark mode */
-  --background: 215 28% 13%;
-  --foreground: 0 0% 98%;
+  /* Darker theme with Pokémon red accents */
+  --background: 240 10% 8%;
+  --foreground: 0 0% 95%;
 
-  --card: 215 25% 18%;
-  --card-foreground: 0 0% 98%;
+  --card: 240 8% 12%;
+  --card-foreground: 0 0% 95%;
 
-  --popover: 215 25% 18%;
-  --popover-foreground: 0 0% 98%;
+  --popover: 240 8% 12%;
+  --popover-foreground: 0 0% 95%;
 
-  /* Pokemon Yellow stays vibrant in dark mode */
-  --primary: 48 100% 50%;
-  --primary-foreground: 215 28% 13%;
+  /* Pokémon Red stays vibrant in dark mode */
+  --primary: 0 72% 51%;
+  --primary-foreground: 0 0% 100%;
 
-  --secondary: 215 30% 22%;
-  --secondary-foreground: 0 0% 98%;
+  --secondary: 240 10% 15%;
+  --secondary-foreground: 0 0% 95%;
 
-  --muted: 215 25% 20%;
-  --muted-foreground: 215 15% 70%;
+  --muted: 240 8% 18%;
+  --muted-foreground: 240 5% 65%;
 
   --accent: 217 91% 60%;
   --accent-foreground: 0 0% 100%;
@@ -111,24 +113,24 @@ COMPONENT PATTERNS:
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
 
-  --success: 160 84% 39%;
+  --success: 142 71% 45%;
   --success-foreground: 0 0% 100%;
 
-  --warning: 38 92% 50%;
-  --warning-foreground: 215 28% 13%;
+  --warning: 45 93% 47%;
+  --warning-foreground: 240 10% 8%;
 
-  --border: 215 20% 30%;
-  --input: 215 20% 30%;
-  --ring: 48 100% 50%;
+  --border: 240 8% 25%;
+  --input: 240 8% 25%;
+  --ring: 0 72% 51%;
 
-  --sidebar-background: 215 28% 10%;
+  --sidebar-background: 240 10% 8%;
   --sidebar-foreground: 0 0% 95%;
-  --sidebar-primary: 48 100% 50%;
-  --sidebar-primary-foreground: 215 28% 13%;
-  --sidebar-accent: 215 25% 18%;
+  --sidebar-primary: 0 72% 51%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 240 8% 12%;
   --sidebar-accent-foreground: 0 0% 95%;
-  --sidebar-border: 215 20% 25%;
-  --sidebar-ring: 217.2 91.2% 59.8%;
+  --sidebar-border: 240 8% 20%;
+  --sidebar-ring: 0 72% 51%;
 }
 
 @theme {

@@ -16,7 +16,10 @@ export default function CardsPage() {
       <div className="container mx-auto px-4 py-8">
         {/* Search Bar */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold mb-6">Browse Pokemon Cards</h1>
+          <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            Browse Pokémon Cards
+          </h1>
+          <p className="text-muted-foreground mb-6">Discover rare and legendary cards from collectors worldwide</p>
           <SearchBar placeholder="Search by name, set, or type..." />
         </div>
 
@@ -57,11 +60,11 @@ export default function CardsPage() {
 
             {/* Pagination */}
             <div className="flex justify-center gap-2 mt-8">
-              <Button variant="outline">Previous</Button>
-              <Button variant="outline" className="bg-primary text-primary-foreground">1</Button>
-              <Button variant="outline">2</Button>
-              <Button variant="outline">3</Button>
-              <Button variant="outline">Next</Button>
+              <Button variant="outline" className="hover:bg-primary/10 hover:text-primary hover:border-primary">Previous</Button>
+              <Button variant="outline" className="bg-primary text-primary-foreground hover:bg-primary/90">1</Button>
+              <Button variant="outline" className="hover:bg-primary/10 hover:text-primary hover:border-primary">2</Button>
+              <Button variant="outline" className="hover:bg-primary/10 hover:text-primary hover:border-primary">3</Button>
+              <Button variant="outline" className="hover:bg-primary/10 hover:text-primary hover:border-primary">Next</Button>
             </div>
           </div>
         </div>

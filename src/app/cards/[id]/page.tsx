@@ -8,6 +8,7 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Star, TrendingUp, TrendingDown, ShoppingCart, MessageSquare, Heart } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
 export default function CardDetailPage({ params }: { params: { id: string } }) {
@@ -22,21 +23,29 @@ export default function CardDetailPage({ params }: { params: { id: string } }) {
   const latestChange = priceHistory.length > 0 ? priceHistory[priceHistory.length - 1].change : 0;
 
   const rarityColors = {
-    'Common': 'bg-gray-100 text-gray-800',
-    'Uncommon': 'bg-green-100 text-green-800',
-    'Rare': 'bg-blue-100 text-blue-800',
-    'Rare Holo': 'bg-purple-100 text-purple-800',
-    'Ultra Rare': 'bg-yellow-100 text-yellow-800'
+    'Common': 'bg-muted text-foreground',
+    'Uncommon': 'bg-success/20 text-success-foreground',
+    'Rare': 'bg-accent/20 text-accent-foreground',
+    'Rare Holo': 'bg-warning/30 text-warning-foreground',
+    'Ultra Rare': 'bg-primary/20 text-primary'
   };
 
   const conditionColors = {
-    'Mint': 'text-green-600',
-    'Near Mint': 'text-green-500',
-    'Excellent': 'text-blue-500',
-    'Good': 'text-yellow-500',
-    'Played': 'text-orange-500',
-    'Heavily Played': 'text-red-500'
+    'Mint': 'text-success',
+    'Near Mint': 'text-success',
+    'Excellent': 'text-accent',
+    'Good': 'text-warning',
+    'Played': 'text-warning',
+    'Heavily Played': 'text-destructive'
   };
+
+  const cardImageMap: Record<string, string> = {
+    'Charizard': '/generated/card-charizard.png',
+    'Pikachu': '/generated/card-pikachu.png',
+    'Mewtwo': '/generated/card-mewtwo.png',
+  };
+
+  const cardImage = cardImageMap[card.name] || '/generated/card-collection.png';
 
   return (
     <div className="min-h-screen bg-background">
@@ -46,16 +55,29 @@ export default function CardDetailPage({ params }: { params: { id: string } }) {
         <div className="grid lg:grid-cols-2 gap-8">
           {/* Left Column - Card Image */}
           <div className="space-y-4">
-            <Card className="p-8">
-              <div className="aspect-[3/4] bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center text-white text-8xl font-bold shadow-xl">
-                {card.name.charAt(0)}
+            <Card className="p-8 bg-gradient-to-br from-background to-muted">
+              <div className="aspect-[3/4] relative rounded-lg overflow-hidden shadow-2xl">
+                <Image
+                  src={cardImage}
+                  alt={card.name}
+                  fill
+                  className="object-cover"
+                  priority
+                />
               </div>
             </Card>
 
             {/* Additional Images */}
             <div className="grid grid-cols-4 gap-2">
               {[1, 2, 3, 4].map((i) => (
-                <div key={i} className="aspect-[3/4] bg-gradient-to-br from-blue-300 to-blue-500 rounded-lg cursor-pointer hover:opacity-75 transition-opacity" />
+                <div key={i} className="aspect-[3/4] relative rounded-lg overflow-hidden cursor-pointer hover:opacity-75 transition-opacity border-2 border-transparent hover:border-primary">
+                  <Image
+                    src={cardImage}
+                    alt={`${card.name} view ${i}`}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
               ))}
             </div>
           </div>
@@ -142,33 +164,38 @@ export default function CardDetailPage({ params }: { params: { id: string } }) {
 
             {/* Action Buttons */}
             <div className="flex gap-3">
-              <Button size="lg" className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold">
+              <Button size="lg" className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-lg hover:shadow-xl transition-all">
                 <ShoppingCart className="w-5 h-5 mr-2" />
                 Buy Now
               </Button>
-              <Button size="lg" variant="outline" className="flex-1">
+              <Button size="lg" variant="outline" className="flex-1 hover:bg-primary/10 hover:text-primary hover:border-primary">
                 <MessageSquare className="w-5 h-5 mr-2" />
                 Make Offer
               </Button>
-              <Button size="lg" variant="outline">
+              <Button size="lg" variant="outline" className="hover:bg-primary/10 hover:text-primary hover:border-primary">
                 <Heart className="w-5 h-5" />
               </Button>
             </div>
 
             {/* Trade Suggestion */}
-            <Card className="p-6 bg-accent/5 border-accent">
+            <Card className="p-6 bg-gradient-to-br from-accent/10 to-primary/5 border-accent/30">
               <h3 className="font-semibold mb-3">Trade Suggestion</h3>
               <p className="text-sm text-muted-foreground mb-4">
                 Based on your collection, we recommend trading:
               </p>
               <div className="flex gap-4">
-                <div className="w-20 h-28 bg-gradient-to-br from-purple-400 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold">
-                  M
+                <div className="w-20 h-28 relative rounded-lg overflow-hidden">
+                  <Image
+                    src="/generated/card-mewtwo.png"
+                    alt="Mewtwo EX"
+                    fill
+                    className="object-cover"
+                  />
                 </div>
                 <div className="flex-1">
                   <p className="font-semibold">Mewtwo EX</p>
                   <p className="text-sm text-muted-foreground">Value: $65</p>
-                  <Badge className="mt-2" variant="outline">Fair Trade</Badge>
+                  <Badge className="mt-2 bg-success/20 text-success hover:bg-success/30" variant="outline">Fair Trade</Badge>
                 </div>
               </div>
             </Card>
@@ -206,19 +233,27 @@ export default function CardDetailPage({ params }: { params: { id: string } }) {
         <div className="mt-12">
           <h2 className="text-2xl font-bold mb-6">Similar Cards</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {mockCards.filter(c => c.id !== card.id).slice(0, 4).map((similarCard) => (
-              <Link key={similarCard.id} href={`/cards/${similarCard.id}`}>
-                <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer">
-                  <div className="aspect-[3/4] bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white text-3xl font-bold">
-                    {similarCard.name.charAt(0)}
-                  </div>
-                  <div className="p-3">
-                    <p className="font-semibold text-sm truncate">{similarCard.name}</p>
-                    <p className="text-lg font-bold text-primary">${similarCard.price}</p>
-                  </div>
-                </Card>
-              </Link>
-            ))}
+            {mockCards.filter(c => c.id !== card.id).slice(0, 4).map((similarCard) => {
+              const similarCardImage = cardImageMap[similarCard.name] || '/generated/card-collection.png';
+              return (
+                <Link key={similarCard.id} href={`/cards/${similarCard.id}`}>
+                  <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer border-2 hover:border-primary/30">
+                    <div className="aspect-[3/4] relative bg-muted">
+                      <Image
+                        src={similarCardImage}
+                        alt={similarCard.name}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <div className="p-3">
+                      <p className="font-semibold text-sm truncate">{similarCard.name}</p>
+                      <p className="text-lg font-bold text-primary">${similarCard.price}</p>
+                    </div>
+                  </Card>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </div>

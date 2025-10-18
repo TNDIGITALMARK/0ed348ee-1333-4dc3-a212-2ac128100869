@@ -89,15 +89,16 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-secondary text-secondary-foreground">
-        <div className="container mx-auto px-4 text-center">
+      <section className="py-20 bg-gradient-to-br from-secondary via-secondary to-warning/20 text-secondary-foreground relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10 bg-[url('/generated/pokeball-icons.png')] bg-repeat bg-center" />
+        <div className="container mx-auto px-4 text-center relative z-10">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             JOIN THE EVOLUTION OF TRADING!
           </h2>
-          <p className="text-xl mb-8 text-secondary-foreground/80 max-w-2xl mx-auto">
+          <p className="text-xl mb-8 text-secondary-foreground/90 max-w-2xl mx-auto">
             Start building your dream collection today with thousands of collectors worldwide.
           </p>
-          <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-lg px-8">
+          <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-lg px-8 shadow-xl hover:shadow-2xl transition-all hover:-translate-y-1">
             GET STARTED TODAY
           </Button>
         </div>

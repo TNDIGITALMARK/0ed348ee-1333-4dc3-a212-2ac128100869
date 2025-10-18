@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import { Star } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface CardDisplayProps {
   card: PokemonCard;
@@ -13,29 +14,43 @@ interface CardDisplayProps {
 
 export function CardDisplay({ card, variant = 'grid' }: CardDisplayProps) {
   const rarityColors = {
-    'Common': 'bg-gray-100 text-gray-800',
-    'Uncommon': 'bg-green-100 text-green-800',
-    'Rare': 'bg-blue-100 text-blue-800',
-    'Rare Holo': 'bg-purple-100 text-purple-800',
-    'Ultra Rare': 'bg-yellow-100 text-yellow-800'
+    'Common': 'bg-muted text-foreground',
+    'Uncommon': 'bg-success/20 text-success-foreground',
+    'Rare': 'bg-accent/20 text-accent-foreground',
+    'Rare Holo': 'bg-warning/30 text-warning-foreground',
+    'Ultra Rare': 'bg-primary/20 text-primary'
   };
 
   const conditionColors = {
-    'Mint': 'bg-green-500',
-    'Near Mint': 'bg-green-400',
-    'Excellent': 'bg-blue-400',
-    'Good': 'bg-yellow-400',
-    'Played': 'bg-orange-400',
-    'Heavily Played': 'bg-red-400'
+    'Mint': 'bg-success',
+    'Near Mint': 'bg-success/80',
+    'Excellent': 'bg-accent',
+    'Good': 'bg-warning',
+    'Played': 'bg-warning/70',
+    'Heavily Played': 'bg-destructive'
   };
+
+  // Map card names to generated images
+  const cardImageMap: Record<string, string> = {
+    'Charizard': '/generated/card-charizard.png',
+    'Pikachu': '/generated/card-pikachu.png',
+    'Mewtwo': '/generated/card-mewtwo.png',
+  };
+
+  const cardImage = cardImageMap[card.name] || '/generated/card-collection.png';
 
   if (variant === 'list') {
     return (
       <Link href={`/cards/${card.id}`}>
         <Card className="p-4 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer">
           <div className="flex gap-4">
-            <div className="w-24 h-32 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center text-white font-bold">
-              {card.name.charAt(0)}
+            <div className="w-24 h-32 relative rounded-lg overflow-hidden">
+              <Image
+                src={cardImage}
+                alt={card.name}
+                fill
+                className="object-cover"
+              />
             </div>
             <div className="flex-1">
               <h3 className="font-bold text-lg">{card.name}</h3>
@@ -64,10 +79,14 @@ export function CardDisplay({ card, variant = 'grid' }: CardDisplayProps) {
 
   return (
     <Link href={`/cards/${card.id}`}>
-      <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-2 cursor-pointer group">
-        <div className="aspect-[3/4] bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white text-4xl font-bold relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-          <span className="relative z-10">{card.name.charAt(0)}</span>
+      <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer group border-2 hover:border-primary/30">
+        <div className="aspect-[3/4] relative overflow-hidden bg-muted">
+          <Image
+            src={cardImage}
+            alt={card.name}
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-300"
+          />
         </div>
         <div className="p-4">
           <h3 className="font-bold text-lg truncate group-hover:text-accent transition-colors">{card.name}</h3>
