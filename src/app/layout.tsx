@@ -18,8 +18,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Elegant Flora Boutique",
-  description: "Beautiful AI-powered website creation platform",
+  title: "PokeTrader - Pokemon Card Trading Platform",
+  description: "Connect, collect, and trade Pokemon cards with collectors worldwide. Discover rare cards, track values, and complete secure trades.",
 };
 
 export default function RootLayout({
